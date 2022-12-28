@@ -1,5 +1,5 @@
 <template>
-  <div id="app" :class="typeof weather.main != 'undefined' && weather.main.temp > 16 ? 'warm' : ''">    
+  <div id="app" :class="typeof weather.main != 'undefined' && weather.main.temp < 0 ? 'cold' : '' && weather.main.temp > 20 ? 'warm' : '' && weather.main.temp > 30 ? 'sun' : ''">    
   <main>
       <div class="search-box">
         <input 
@@ -80,7 +80,12 @@ body {
 #app.warm{
   background-image: url("https://images.alphacoders.com/938/938875.jpg");
 }
-
+#app.cold{
+  background-image: url("https://wallpapercave.com/wp/wp3335309.jpg");
+}
+#app.sun{
+  background-image: url("https://wallpapercave.com/wp/wp2268961.jpg");
+}
 main {
   display: grid;
   grid-template-columns: 50% 50%;
@@ -100,13 +105,12 @@ main {
   outline: none;
   appearance: none;
   background-color: rgba(255, 255, 255, .5);
-  border-radius: 0px 20px 0px 20px;
+  border-radius:  20px;
   transition: .4s;
 }
 .search-box .search-bar:focus{
   box-shadow: 0px 0px 16px rgba(0, 0, 0, .25);
   background-color: rgba(255, 255, 255, .75);
-  border-radius: 20px 0px 20px 0px;
 }
 .location-box .location{
   color: #fff;
@@ -114,7 +118,6 @@ main {
   font-size: 32px;
   font-weight: 500;
   text-align: center;
-  text-shadow: 1px 3px rgba(0, 0, 0, .25);
 }
 .location-box .date{
   color: #fff;
@@ -128,15 +131,12 @@ main {
 }
 .weather-box .temp{
   display: inline-block;
-  padding: 10px 20px;
   color: #fff;
   font-size: 100px;
   font-weight: 900;
   text-shadow: rgba(0, 0, 0, .25);
-  background-color: rgba(255, 255, 255, .25);
   border-radius: 20px;
   margin: 30px 0;
-  box-shadow: 3px 6px rgba(0, 0, 0, .25);
 
 }
 .weather-box .weather{
